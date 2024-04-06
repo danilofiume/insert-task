@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (task of tasks; track task.id) {
+    <tr>
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.completed ? 'Completato' : 'Non Completato'}}</td>
+      <td>
+        <button class="btn btn-primary me-2" (click)="onDetails(task.id)">Details</button>
+        <button class="btn btn-secondary me-2" (click)="onUpdate(task.id)">Update</button>
+        <button class="btn btn-danger me-2" (click)="onDelete(task.id)">Delete</button>
+        @if(!task.completed){
+        <button class="btn btn-success me-2" (click)="onComplete(task)">Complete</button>
+      } @else {
+        <button class="btn btn-info me-2" (click)="onUncomplete(task)">Uncomplete</button>
+      }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

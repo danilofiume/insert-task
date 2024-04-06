@@ -1,0 +1,16 @@
+@if (taskDetails) {
+<div class="card">
+  <div class="card-header">
+    {{taskDetails.id}} - {{taskDetails.title}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{taskDetails.description}}</p>
+    <p class="card-text">{{taskDetails.completed ? 'Completato' : 'Non Completato'}}</p>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-success me-3" (click)="onUpdate()">Update</button>
+    <button class="btn btn-danger" (click)="onBack()">Back</button>
+  </div>
+</div>
+}

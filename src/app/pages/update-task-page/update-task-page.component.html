@@ -1,0 +1,36 @@
+<!-- <div class="card p-3 mt-4">
+    <form>
+        <input type="hidden" name="id" ngModel>
+        <input type="hidden" name="completed" ngModel>
+        <label for="title">Title</label>
+        <input type="text" id="title" [value]="taskUpdate.title">
+        <label for="description">Description</label>
+        <input type="text" id="description" [value]="taskUpdate.description">
+        <button>Invia</button>
+    </form>
+
+</div> -->
+<h3>UPDATE TASK</h3>
+
+<div class="card p-3 mt-4">
+    <form #updateTaskForm="ngForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" name="id" [(ngModel)]="taskUpdate.id">
+        <input type="hidden" name="completed" [(ngModel)]="taskUpdate.completed">
+        <div class="mb-3">
+            <label for="title" class="form-label">Task Title</label>
+            <input type="text" class="form-control" id="title" name="title" [(ngModel)]="taskUpdate.title" required #titleControl="ngModel">
+            <app-error-message *ngIf="titleControl?.touched && titleControl.errors?.required" [text]="'Title is required'"></app-error-message>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" name="description" [(ngModel)]="taskUpdate.description" required minlength="5"></textarea>
+            <app-error-message *ngIf="updateTaskForm.controls?.description?.touched && updateTaskForm.controls?.description?.errors?.required" [text]="'Description is required'"></app-error-message>
+            <app-error-message *ngIf="updateTaskForm.controls?.description?.touched && updateTaskForm.controls?.description?.errors?.minlength" [text]="'Description should have at least 5 characters'"></app-error-message>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success" [disabled]="!updateTaskForm.valid" >Save</button>
+        </div>
+    </form>
+</div>

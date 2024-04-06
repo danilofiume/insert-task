@@ -1,0 +1,7 @@
+
+<app-table [tasks]="taskList" (details)="onGoToDetails($event)" 
+(delete)="onDeleteTask($event)"
+(complete)="onUpdateTask($event)"
+(uncomplete)="onUpdateTask($event)"
+(update)="onGoToUpdate($event)"
+></app-table>

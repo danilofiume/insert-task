@@ -1,0 +1,40 @@
+<div class="card p-3 mt-4">
+    <form #insertTaskForm="ngForm" (ngSubmit)="onInsertTask(insertTaskForm)">
+        <div class="mb-3">
+            <label for="title" class="form-label">Name Title</label>
+            <input type="text" class="form-control" id="title" name="title" ngModel required #titleControl="ngModel">
+            <!-- con#andiamo a creare una variabile dove andiamo ad assegnare ng module e riduciamo il testo nel if  -->
+
+        </div>
+        
+
+        <!-- il punto interrogativo perche non legge il title e errors quindi metterlo e fondamnetale -->
+
+        @if(titleControl?.touched && titleControl?.errors?.required){
+       
+            <app-error-message [text]="'Title is required'"></app-error-message>
+         }
+
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" name="description" ngModel required minlength="5"></textarea>
+        </div>
+
+        @if(insertTaskForm.controls.description?.touched){
+
+            @if( insertTaskForm.controls.description?.errors?.required){
+                <app-error-message [text]="'Description is required'"></app-error-message>
+                }
+
+                <!-- minLenght ci offre Angular per mandare un errore se il numero dei car e sotto a quello che noi inidichiamo sopra -->
+            @if(insertTaskForm.controls.description?.touched && insertTaskForm.controls.description?.errors?.minlength){
+                <app-error-message [text]="'Description is should have at least 5 characters'"></app-error-message>
+                }     
+        }
+        <div>
+            <!-- in questo modo renderemo disable solo quando tutto e valido -->
+            <button type="submit" class="btn btn-success" [disabled]="!insertTaskForm.valid">Save</button>
+        </div>
+    </form>
+</div>
